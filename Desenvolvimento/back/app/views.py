@@ -1,15 +1,22 @@
 from django.shortcuts import render
 
+from rest_framework.decorators import api_view
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.pagination import PageNumberPagination
-from back.app.serializer import ProductSerializer, UserSerializer, HistorySerializer, EstoqueSerializer
-from .models import User, Product, History, Estoque
+from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .models import User, Product, Stock, Monitoring
+from .serializer import ProductSerializer, UserSerializer, LoginSerializer, MonitoringSerializer, StockSerializer
 
-# User methods
+# Login method
 
-class User_GET_POST(ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+@api_view(['GET'])
+def GetUser(request):
+    serializer = UserSerializer(request.user)
+    return Response(serializer.data)
+
+class Login(TokenObtainPairView):
+    serializer_class = LoginSerializer
 
 # Pagination class
 
@@ -18,23 +25,33 @@ class Paginated(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 100
 
-# Estoque methods
+# User methods
 
-class Estoque_GET_POST(ListCreateAPIView):
-    queryset = Estoque.objects.all()
-    serializer_class = EstoqueSerializer
+class User_GET_POST(ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# Stock methods
+
+class Stock_GET_POST(ListCreateAPIView):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
     pagination_class = Paginated
 
-# History methods
+class Stock_GET_PUT_PATCH_DELETE(ListCreateAPIView):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
 
-class History_GET_POST(ListCreateAPIView):
-    queryset = History.objects.all()
-    serializer_class = UserSerializer
+# Monitoring methods
+
+class Monitoring_GET_POST(ListCreateAPIView):
+    queryset = Monitoring.objects.all()
+    serializer_class = MonitoringSerializer
     pagination_class = Paginated
 
-class History_GET_PUT_PATCH_DELETE(ListCreateAPIView):
-    queryset = History.objects.all()
-    serializer_class = UserSerializer
+class Monitoring_GET_PUT_PATCH_DELETE(ListCreateAPIView):
+    queryset = Monitoring.objects.all()
+    serializer_class = MonitoringSerializer
 
 # Product methods
 

@@ -1,19 +1,29 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Product, History
+from .models import User, Product, Monitoring, Stock
 
 class UserAdmin(UserAdmin):
-    fieldsets = UserAdmin.fieldsets + (
+    list_display = ('email', 'phone', 'is_staff', 'is_superuser')
+    search_fields = ('email', 'phone')
+    ordering = ('email',) 
+    fieldsets = (
         (None, {
-            'fields': ('phone', 'address', 'date_of_birth')
-        }),
+            'fields': ('email', 'password')
+            }
+        ),
+        ('Informações pessoais', {
+            'fields': ('name', 'phone', 'address', 'date_of_birth')
+            }
+        ),
     )
-    add_fieldsets = UserAdmin.add_fieldsets + (
+    add_fieldsets = (
         (None, {
-            'fields': ('phone', 'address', 'date_of_birth')
-        })
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_superuser'),
+        }),
     )
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Monitoring)
 admin.site.register(Product)
-admin.site.register(History)
+admin.site.register(Stock)

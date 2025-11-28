@@ -1,7 +1,7 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from django.contrib.auth import authenticate
-from .models import Product, User, History, Estoque
+from .models import Product, User, Stock, Monitoring
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,14 +24,14 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = '__all__'
 
-class EstoqueSerializer(serializers.ModelSerializer):
+class StockSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Estoque
+        model = Stock
         fields = '__all__'
 
-class HistorySerializer(serializers.ModelSerializer):
+class MonitoringSerializer(serializers.ModelSerializer):
     class Meta:
-        model = History
+        model = Monitoring
         fields = '__all__'        
 
 class LoginSerializer(TokenObtainPairSerializer):
