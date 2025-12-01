@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework.decorators import api_view
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -34,11 +34,11 @@ class User_GET_POST(ListCreateAPIView):
 # Stock methods
 
 class Stock_GET_POST(ListCreateAPIView):
-    queryset = Stock.objects.all()
+    queryset = Stock.objects.all().order_by('product__name')
     serializer_class = StockSerializer
     pagination_class = Paginated
 
-class Stock_GET_PUT_PATCH_DELETE(ListCreateAPIView):
+class Stock_GET_PUT_PATCH_DELETE(RetrieveUpdateDestroyAPIView):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
 
@@ -49,7 +49,7 @@ class Monitoring_GET_POST(ListCreateAPIView):
     serializer_class = MonitoringSerializer
     pagination_class = Paginated
 
-class Monitoring_GET_PUT_PATCH_DELETE(ListCreateAPIView):
+class Monitoring_GET_PUT_PATCH_DELETE(RetrieveUpdateDestroyAPIView):
     queryset = Monitoring.objects.all()
     serializer_class = MonitoringSerializer
 
@@ -65,10 +65,10 @@ class Product_GET_POST(ListCreateAPIView):
         name = self.request.query_params.get('name')
 
         if name:
-            queryset = queryset.filter(name=name)
+            queryset = queryset.filter(name__icontains=name)
 
         return queryset
 
-class Product_GET_PUT_PATCH_DELETE(ListCreateAPIView):
+class Product_GET_PUT_PATCH_DELETE(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer

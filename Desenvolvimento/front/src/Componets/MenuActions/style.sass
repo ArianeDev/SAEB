@@ -1,0 +1,122 @@
+@use '../../Style/variables'
+
+.menuActions-container
+    position: fixed
+    display: flex
+    align-items: center
+    flex-direction: column-reverse
+    left: 95%
+    top: 90%
+    z-index: 1000
+    
+    .checkbox
+        opacity: 0
+        z-index: 10
+        cursor: pointer
+
+    .btn-menuActions
+        display: flex
+        align-items: center
+        justify-content: center
+        cursor: pointer
+        width: 50px
+        height: 50px
+        border-radius: 50%
+        background: linear-gradient(145deg, #ffffff, #f0eaff)
+        color: variables.$main-color
+        box-shadow: 0 0 10px variables.$main-color, 0 0 20px variables.$main-color
+        transition: all .2s ease-in-out
+        
+        .iconUp, .iconDown
+            transition: all .2s ease-in-out
+
+        .iconUp:hover
+            transform: translateY(-5px)
+        
+        .iconDown:hover
+            transform: translateY(5px)
+
+    .btn-menuActions:hover
+        transform: scale(1.1)
+        box-shadow: 0 0 15px variables.$main-color, 0 0 30px variables.$main-color
+
+    .menubtn-container
+        position: absolute
+        bottom: 5rem
+        display: flex
+        flex-direction: column
+        cursor: pointer
+        gap: 1rem
+
+        .option
+            display: flex
+            align-items: center
+            justify-content: center
+            color: variables.$main-color !important
+            width: 50px
+            height: 50px
+            border-radius: 50%
+            border: none
+            cursor: pointer
+            opacity: 0
+            transition: all 0.4s ease
+            pointer-events: none
+        
+        .option.active
+            pointer-events: auto
+
+        .option.active:hover
+            transform: scale(1.1)
+            box-shadow: 0 0 10px variables.$color-puple-80
+            transition: all 0.3s ease
+
+        .option-A.active
+            animation: option-A
+            animation-duration: .9s
+            opacity: 1
+
+        .option-B.active
+            animation: option-B
+            animation-duration: .9s
+            opacity: 1
+
+        .option-C.active
+            animation: option-C
+            animation-duration: .9s
+            opacity: 1
+        
+        .option-A.hide
+            transform: translateY(210px)
+            transition: .5s all
+            opacity: 0
+
+        .option-B.hide
+            transform: translateY(140px)
+            transition: .5s all
+            opacity: 0
+
+        .option-C.hide
+            transform: translateY(70px)
+            transition: .5s all
+            opacity: 0
+
+@keyframes option-A
+    0% 
+        transform: translateY(210px)
+        opacity: 0.5
+    100%
+        transform: translateY(0)
+
+@keyframes option-B
+    0% 
+        transform: translateY(140px)
+        opacity: 0.5
+    100%
+        transform: translateY(0)
+
+@keyframes option-C
+    0% 
+        transform: translateY(70px)
+        opacity: 0.5
+    100%
+        transform: translateY(0)

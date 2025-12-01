@@ -1,0 +1,60 @@
+@use '../../Style/variables'
+
+.cards-container
+    display: flex
+    padding: 1rem
+    gap: 2rem
+    
+.flip-card
+  background-color: transparent
+  width: 125px
+  height: 125px
+  perspective: 1000px
+  display: flex
+  border: none
+  outline: none
+  cursor: pointer
+
+.title
+    font-size: 14px
+    font-weight: 600
+    text-align: center
+    margin: 0
+
+.flip-card-inner
+  width: 100%
+  height: 100%
+  text-align: center
+  transition: transform 0.8s
+  transform-style: preserve-3d
+
+.flip-card:hover .flip-card-inner
+  transform: rotateY(180deg)
+
+.flip-card-front, .flip-card-back
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2)
+  position: absolute
+  display: flex
+  flex-direction: column
+  justify-content: center
+  width: 100%
+  height: 100%
+  -webkit-backface-visibility: hidden
+  backface-visibility: hidden
+  border: 1px solid variables.$color-white
+  border-radius: 1rem
+
+.flip-card-front
+  background: linear-gradient(120deg, #e2e2e2 60%, #bebebe 88%)
+  color: variables.$color-gray-letter
+
+  figure 
+    .icon
+      height: 3rem
+      width: 3rem
+
+.flip-card-back
+  background-color: variables.$main-color
+  color: white
+  transform: rotateY(180deg)
+  border: 1px solid rgb(211, 211, 211)

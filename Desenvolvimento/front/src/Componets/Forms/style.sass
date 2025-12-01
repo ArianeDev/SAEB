@@ -1,0 +1,42 @@
+@use '../../Style/variables'
+
+.container-forms
+    background-color: variables.$color-white
+    border-radius: 0 10px 10px 0
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    align-items: center
+    text-align: center
+    width: 30vw
+
+    .error
+        display: flex
+        align-items: center
+        background-color: rgba(167, 0, 0, 0.192)
+        padding: 0 1rem
+        height: 2rem
+        border-radius: 1rem
+        border: 1px solid rgb(95, 0, 0)
+        color: rgb(95, 0, 0)
+        font-weight: 600
+
+    form
+        width: 80%
+    
+        .container-input
+            display: flex
+            flex-direction: column
+            margin-top: 2rem
+    
+    p
+        margin-top: 2rem
+
+        .link
+            color: variables.$main-color
+            font-weight: 500
+            cursor: pointer
+            transition: all .2s
+
+            &:hover
+                color: variables.$color-puple-80

@@ -1,0 +1,53 @@
+@use '../../Style/variables'
+@use '../../Style/main'
+
+.container-table
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    padding-top: 12vh
+    background: variables.$gradient-pink_puple
+
+    .search-container
+        width: 60vw
+
+        input
+            width: 100%
+            padding: 1vh
+            border-radius: 5px
+            border: none
+            font-size: 1rem
+
+    .title 
+        color: variables.$color-white
+        text-transform: capitalize
+        font-size: 1.5rem
+        display: flex
+        align-items: start
+        justify-content: start
+        width: 90vw
+        margin-bottom: 2vh
+
+    .table-header
+        display: flex
+        justify-content: space-between
+        width: 90vw
+        color: variables.$color-white
+
+        h2
+            text-transform: capitalize
+
+        .buttons
+            display: flex
+            justify-content: space-between
+            width: 4%
+
+            button
+                color: variables.$color-white
+                background: transparent
+                border: none
+                cursor: pointer
+
+                &.disabled
+                    opacity: 0.2

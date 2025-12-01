@@ -1,0 +1,55 @@
+.modalBack
+  position: fixed
+  display: flex
+  justify-content: center
+  align-items: center
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, 0.6)
+  z-index: 999
+
+  .modalContainer
+    background-color: #fff
+    padding: 1rem 2rem
+    border-radius: 0.2rem
+    height: auto
+    max-width: 65%
+    display: flex
+    flex-direction: column
+    overflow-y: auto
+
+    .modalHeader
+      display: flex
+      justify-content: end
+      align-items: center
+      width: 100%
+
+      button
+        background-color: transparent
+        border: none
+        color: rgb(0, 0, 0)
+        font-size: 2rem
+        cursor: pointer
+
+      button:hover
+        color: rgb(169, 169, 169)
+
+    .modalMain
+      display: flex
+      flex-direction: row
+      aling-items: center
+      justify-content: center
+
+      .header
+        display: flex
+        aling-items: center
+        justify-content: center
+
+        h1
+          margin-left: 2rem
+
+        img 
+          width: 6rem
+          height: 4rem

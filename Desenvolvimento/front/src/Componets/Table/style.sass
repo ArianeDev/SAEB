@@ -1,0 +1,160 @@
+@use '../../Style/variables'
+
+table
+    background-color: variables.$color-white
+    border-radius: 0.2rem
+    margin-top: 2rem
+    margin-bottom: 2rem
+    width: 90vw
+    height: auto
+    padding: 2rem
+    table-layout: fixed
+
+    thead
+        height: 6vh
+
+        tr
+            th
+                font-weight: 600
+                word-wrap: break-word
+                overflow-wrap: break-word
+                text-align: start
+
+        .actionData
+            width: 5rem
+            text-align: center
+
+    tbody
+        tr
+            height: 10vh
+            
+            td, th
+                width: calc(100% / 6)
+
+            td
+                word-wrap: break-word
+                overflow-wrap: break-word
+                text-align: start
+
+                .skeletonLine
+                    height: 20px
+                    background: linear-gradient(90deg, #eee, #ddd, #eee)
+                    background-size: 200% 100%
+                    animation: shimmer 1.2s infinite
+                    border-radius: 4px
+                    margin-top: 2rem 
+
+                .skeletonIcon
+                    width: 24px
+                    height: 24px
+                    border-radius: 4px
+                    background: linear-gradient(90deg, #eee, #ddd, #eee)
+                    background-size: 200% 100%
+                    animation: shimmer 1.2s infinite
+                    margin-top: 2rem 
+
+            .icons
+                display: flex
+                flex-direction: row-reverse
+                justify-content: space-between
+                height: 10vh
+                width: 5rem
+                align-items: center
+
+.card
+    display: none
+    width: 90%
+    gap: 2rem
+    padding: 1rem
+    grid-template-columns: repeat(2, 1fr)
+    margin: 0 auto
+
+    .card-item
+        background-color: variables.$color-white
+        padding: 1.5rem
+        border-radius: 0.5rem
+        display: flex
+        flex-direction: row-reverse
+
+        .header-card
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            align-items: end
+            width: 50%
+
+            .status-card
+                width: 50%
+                display: flex
+                justify-content: end
+
+            .icons-header
+                display: flex
+                flex-direction: row-reverse
+                justify-content: space-between
+                width: 4rem
+
+        .content-card
+            width: 50%
+
+            h3
+                font-size: 1.2rem
+                font-weight: 600
+                text-transform: capitalize
+            
+            p
+                font-size: 0.9rem
+                color: variables.$color-gray-letter
+                margin-top: 0.5rem
+            span
+                color: #000
+                font-weight: 600
+                font-size: 0.9rem
+
+.card-item-skeleton
+    background-color: variables.$color-white
+    padding: 1rem
+    border-radius: 0.5rem
+    height: 154px
+
+button
+    background-color: variables.$color-white
+    border: none
+    cursor: pointer
+
+    .trash
+        color: rgb(218, 0, 0)
+        margin-left: 0.5rem
+
+    .userPen
+        color: rgb(88, 88, 88)
+
+    .trash:hover, .userPen:hover
+        color: rgb(177, 177, 177)
+        transition: all .3s
+    
+.green
+    background-color: #96ff9d
+    border: 2px solid #4caf50
+    border-radius: 0.5rem
+    color: #4caf50
+    font-weight: 600
+    padding: 0.3rem
+    text-align: center
+    width: 50%
+
+.red
+    background-color: #ff9696
+    border: 2px solid #af4c4c
+    border-radius: 0.5rem
+    color: #af4c4c
+    font-weight: 600
+    padding: 0.3rem
+    text-align: center
+    width: 50%
+
+@keyframes shimmer
+    0%
+        background-position: 200% 0
+    100%
+        background-position: -200% 0

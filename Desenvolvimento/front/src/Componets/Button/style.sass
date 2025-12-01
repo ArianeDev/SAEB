@@ -1,0 +1,19 @@
+@use '../../Style/variables'
+	
+.btn
+  padding: 0 2rem
+  font-weight: 700
+  background: variables.$color-gray-90
+  color: variables.$main-color
+  cursor: pointer
+  border-radius: 0.5rem
+  border: 2px solid variables.$main-color
+  transition-duration: 1s
+  transition-property: border-top, border-left, border-bottom, border-right, box-shadow
+  margin: 2rem 0
+  height: 2.5rem
+
+
+.btn:hover 
+  border: 2px solid variables.$color-puple-80
+  box-shadow: rgba(168, 108, 243, 0.4) 3px 3px, rgba(168, 108, 243, 0.3) 5px 5px, rgba(168, 108, 243, 0.2) 10px 10px

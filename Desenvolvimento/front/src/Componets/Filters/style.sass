@@ -1,0 +1,48 @@
+@use '../../Style/variables'
+
+.container-filters
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    gap: 2rem
+
+    .container-input
+        display: flex
+        gap: 0.5rem
+        color: variables.$color-white
+
+        input
+            border-radius: 0.2rem
+            border: none
+            padding: 0.2rem
+            cursor: pointer
+            outline: none
+
+        select
+            border-radius: 0.2rem
+            border: none
+            padding: 0.2rem
+            cursor: pointer
+            outline: none
+
+    button
+        background-color: variables.$color-white
+        border-radius: 0.2rem
+        border: none
+        cursor: pointer
+        display: flex
+        align-items: center
+        justify-content: center
+        height: 2rem
+        width: 2rem
+        transition: all .3s ease-in-out
+
+        .searchIcon
+            height: 1.2rem
+            width: 1.2rem
+            color: variables.$color-gray-letter
+
+    button:hover
+        transform: scale(1.1)
+        box-shadow: 0 0 15px variables.$main-color, 0 0 30px variables.$main-color
+

@@ -1,0 +1,72 @@
+CREATE DATABASE saep_db;
+
+CREATE TABLE auth_user (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(150),
+    email VARCHAR(254) UNIQUE NOT NULL,
+    phone VARCHAR(15),
+    address TEXT,
+    date_of_birth DATE,
+    password VARCHAR(128),
+    is_superuser BOOLEAN NOT NULL DEFAULT FALSE,
+    is_staff BOOLEAN NOT NULL DEFAULT FALSE,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    last_login TIMESTAMP,
+    date_joined TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    tension VARCHAR(100),
+    dimensions VARCHAR(100),
+    storage VARCHAR(100),
+    resolution VARCHAR(100),
+    conectivity VARCHAR(100)
+);
+
+CREATE TABLE stock (
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+    quantity INTEGER NOT NULL,
+    min_quantity INTEGER NOT NULL,
+    max_quantity INTEGER NOT NULL
+);
+
+CREATE TABLE monitoring (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES auth_user(id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+    type VARCHAR(10) NOT NULL,
+    quantity INTEGER,
+    date TIMESTAMP
+);
+
+-- Inserir 3 usuários
+INSERT INTO auth_user (name, email, phone, address, date_of_birth, password, is_superuser, is_staff, is_active, date_joined)
+VALUES
+('João Silva', 'joao.silva@example.com', '(11)91234-5678', 'Rua A, 123', '1980-05-12', 'hash_da_senha', FALSE, FALSE, TRUE, NOW()),
+('Maria Oliveira', 'maria.oliveira@example.com', '(21)92345-6789', 'Rua B, 456', '1990-08-22', 'hash_da_senha', FALSE, FALSE, TRUE, NOW()),
+('Carlos Souza', 'carlos.souza@example.com', '(31)93456-7890', 'Rua C, 789', '1975-12-01', 'hash_da_senha', TRUE, TRUE, TRUE, NOW());
+
+-- Inserir 3 produtos
+INSERT INTO product (name, description, tension, dimensions, storage, resolution, conectivity)
+VALUES
+('Produto A', 'Descrição do Produto A', '220V', '10x20x30', 'Armazenar em local seco', '1080p', 'Wi-Fi'),
+('Produto B', 'Descrição do Produto B', '110V', '15x25x35', 'Armazenar em local fresco', '720p', 'Bluetooth'),
+('Produto C', 'Descrição do Produto C', '220V', '12x22x32', 'Armazenar longe do sol', '4K', 'Ethernet');
+
+-- Inserir 3 registros em stock
+INSERT INTO stock (product_id, quantity, min_quantity, max_quantity)
+VALUES
+(1, 50, 10, 100),
+(2, 20, 5, 50),
+(3, 75, 20, 150);
+
+-- Inserir 3 monitoramentos
+INSERT INTO monitoring (user_id, product_id, type, quantity, date)
+VALUES
+(1, 1, 'view', 10, '2025-12-01 10:00:00'),
+(2, 2, 'purchase', 5, '2025-12-02 11:30:00'),
+(3, 3, 'view', 8, '2025-12-03 14:45:00');

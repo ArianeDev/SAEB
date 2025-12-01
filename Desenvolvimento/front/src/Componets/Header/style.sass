@@ -1,0 +1,38 @@
+@use '../../Style/variables'
+
+header 
+    display: flex
+    position: fixed
+    align-items: center
+    justify-content: space-between
+    transition: all 0.6s ease-in-out
+    padding: 0 5rem
+    height: 10vh
+    width: 100%
+
+    figure
+        img
+            height: 2.5rem
+
+    nav
+        ul
+            display: flex
+            list-style-type: none
+
+            .btn-exit
+                background: transparent
+                border: none
+                color: variables.$color-white
+                cursor: pointer
+                margin-left: 0.5rem
+
+            .link
+                text-decoration: none
+            
+            li
+                padding: 0 1rem
+                color: variables.$color-white
+
+.scrolled
+    background: variables.$gradient-pink_puple
+    
