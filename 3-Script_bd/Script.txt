@@ -1,22 +1,17 @@
 CREATE DATABASE saep_db;
 
 CREATE TABLE auth_user (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY auto_increment,
     name VARCHAR(150),
-    email VARCHAR(254) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
     phone VARCHAR(15),
     address TEXT,
     date_of_birth DATE,
     password VARCHAR(128),
-    is_superuser BOOLEAN NOT NULL DEFAULT FALSE,
-    is_staff BOOLEAN NOT NULL DEFAULT FALSE,
-    is_active BOOLEAN NOT NULL DEFAULT TRUE,
-    last_login TIMESTAMP,
-    date_joined TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE product (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY auto_increment,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     tension VARCHAR(100),
@@ -27,7 +22,7 @@ CREATE TABLE product (
 );
 
 CREATE TABLE stock (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY auto_increment,
     product_id INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
     quantity INTEGER NOT NULL,
     min_quantity INTEGER NOT NULL,
@@ -35,7 +30,7 @@ CREATE TABLE stock (
 );
 
 CREATE TABLE monitoring (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY auto_increment,
     user_id INTEGER NOT NULL REFERENCES auth_user(id) ON DELETE CASCADE,
     product_id INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
     type VARCHAR(10) NOT NULL,
